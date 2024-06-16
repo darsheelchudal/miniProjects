@@ -5,9 +5,6 @@ import connectDB from "./database/connectDB.js";
 
 dotenv.config();
 
-//connection to database
-connectDB();
-
 const app = express();
 
 //Middlewares
@@ -27,4 +24,14 @@ app.use("/api/v1/tasks", tasks);
 //  delete("/api/v1/tasks/:id") -delete task
 
 const PORT = 8000;
-app.listen(PORT, console.log(`Server is listening at Port ${PORT}`));
+
+//connection to database
+const connectionStart = async () => {
+  try {
+    await connectDB();
+    app.listen(PORT, console.log(`Server is listening at Port ${PORT}`));
+  } catch (error) {
+    console.log("Error", error);
+  }
+};
+connectionStart();
