@@ -20,4 +20,4 @@ app.use("/api/v1/tasks", tasks);
 //  delete("/api/v1/tasks/:id") -delete task
 
 const PORT = 8000;
-app.listen(PORT, console.log(`Server is listening at Port ${PORT}...`));
+app.listen(PORT, console.log(`Server is listening at Port ${PORT}`));
