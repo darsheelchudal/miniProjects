@@ -28,8 +28,10 @@ const PORT = 8000;
 //connection to database
 const connectionStart = async () => {
   try {
-    await connectDB();
-    app.listen(PORT, console.log(`Server is listening at Port ${PORT}`));
+    await connectDB(process.env.MONGO_URI).then(() => {
+      app.listen(PORT, console.log(`Server is listening at Port ${PORT}`));
+      console.log("DB connected successfully");
+    });
   } catch (error) {
     console.log("Error", error);
   }
