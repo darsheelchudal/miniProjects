@@ -2,8 +2,12 @@ import express from "express";
 import { Task } from "../models/Task.js";
 
 const getAllTasks = async (req, res) => {
-  const task = await Task.find({});
-  res.send("Get all tasks").json({ task });
+  try {
+    const tasks = await Task.find({});
+    res.status(200).json({ tasks: tasks });
+  } catch (error) {
+    res.send(500).json({ message: error });
+  }
 };
 
 //Asynchronous operations should have try and catch block
@@ -12,7 +16,7 @@ const createTask = async (req, res) => {
     const task = await Task.create(req.body);
     res.status(201).json({ task });
   } catch (error) {
-    res.status(500).json({ msg: error });
+    res.status(500).json({ message: error });
   }
 };
 
