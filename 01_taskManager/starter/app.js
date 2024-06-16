@@ -1,5 +1,12 @@
 import express from "express";
 import tasks from "./routes/tasks.js";
+import dotenv from "dotenv";
+import connectDB from "./database/connectDB.js";
+
+dotenv.config();
+
+//connection to database
+connectDB();
 
 const app = express();
 
