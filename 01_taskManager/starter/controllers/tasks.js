@@ -1,11 +1,14 @@
 import express from "express";
+import { Task } from "../models/Task.js";
 
-const getAllTasks = (req, res) => {
-  res.send("Get all tasks");
+const getAllTasks = async (req, res) => {
+  const task = await Task.find({});
+  res.send("Get all tasks").json({ task });
 };
 
-const createTask = (req, res) => {
-  res.json(req.body);
+const createTask = async (req, res) => {
+  const task = await Task.create(req.body);
+  res.status(201).json({ task });
 };
 
 const getTask = (req, res) => {
