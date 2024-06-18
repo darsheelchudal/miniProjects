@@ -5,6 +5,13 @@ const getAllTasks = async (req, res) => {
   try {
     const tasks = await Task.find({});
     res.status(200).json({ tasks: tasks });
+    // res.status(200).json({ tasks: tasks, value: tasks.length });
+    // res
+    //   .status(200)
+    //   .json({ success: true, data: { tasks, numOfHits: tasks.length } });
+    // res
+    //   .status(200)
+    //   .json({ status: "success", data: { tasks, numOfHits: tasks.length } });
   } catch (error) {
     res.send(500).json({ message: error });
   }
